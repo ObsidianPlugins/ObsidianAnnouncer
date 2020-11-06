@@ -48,8 +48,6 @@ namespace ObsidianAnnouncer.Types
         ITextComponent IChatMessage.ClickEvent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         ITextComponent IChatMessage.HoverEvent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        //public ITextComponent IChatMessage.ClickEvent { get => this.ConvertToHoverITextComponent(); set => HoverEvent = (TextComponent)value; }
-        //ITextComponent IChatMessage.HoverEvent { get => HoverEvent; set => HoverEvent = (TextComponent)value; }
 
         public IEnumerable<IChatMessage> GetExtras()
         {
