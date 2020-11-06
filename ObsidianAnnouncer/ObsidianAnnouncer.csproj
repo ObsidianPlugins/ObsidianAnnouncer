@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>C:\Users\warpe\Documents\ObsidianDev\Server\Obsidian\bin\Debug\netcoreapp3.1\Server-0\plugins</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Types\Message.cs~RF1c6def5.TMP" />
+  </ItemGroup>
+
+	
+  <ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="12.0.3" ExcludeAssets="runtime">
+		  <Private>false</Private>
+	  </PackageReference>
+	  <PackageReference Include="Obsidian.API" Version="1.0.165" ExcludeAssets="runtime">
+		  <Private>false</Private>
+	  </PackageReference>
+  </ItemGroup>
+
+</Project>

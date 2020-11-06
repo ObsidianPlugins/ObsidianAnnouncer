@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ObsidianAnnouncer": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\warpe\\Documents\\ObsidianDev\\Server\\Obsidian\\bin\\Debug\\netcoreapp3.1\\Obsidian.exe",
+      "workingDirectory": "C:\\Users\\warpe\\Documents\\ObsidianDev\\Server\\Obsidian\\bin\\Debug\\netcoreapp3.1"
+    }
+  }
+}
