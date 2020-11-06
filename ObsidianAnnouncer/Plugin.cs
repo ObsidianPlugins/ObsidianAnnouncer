@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ObsidianAnnouncer
 {
     [Plugin(Authors = "Roxxel",
-        Description = "Interval auto annoucement",
+        Description = "Interval auto annoucement JSON messages",
         Name = "Obsidian Announcer",
         ProjectUrl = "https://github.com/roxxel/ObsidianAnnouncer",
         Version = "0.1")]
