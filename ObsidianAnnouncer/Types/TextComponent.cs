@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ObsidianAnnouncer.Types
 {
-    //This also stealed from obsidian repo don't judge me :) 
+    //This also stolen from obsidian repo don't judge me :) 
     public class TextComponent : ITextComponent
     {
         [JsonProperty("action"), JsonConverter(typeof(DefaultEnumConverter<ETextAction>))]

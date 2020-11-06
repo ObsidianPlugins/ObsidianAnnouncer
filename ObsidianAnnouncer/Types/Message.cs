@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ObsidianAnnouncer.Types
 {
-    //Stealed from Obsidian repo
+    //Stolen from Obsidian repo
     public class Message : IChatMessage
     { 
         [JsonProperty("color", DefaultValueHandling = DefaultValueHandling.Ignore)]
