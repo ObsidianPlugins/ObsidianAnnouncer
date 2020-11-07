@@ -7,3 +7,5 @@
 ## Todo
 - [ ] Refactor code
 - [x] Hover&Click actions support
+- [x] Configuration
+- [x] Broadcasting
