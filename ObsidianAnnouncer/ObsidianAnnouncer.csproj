@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>0.0.2</Version>
+	<Authors>Roxxel</Authors>
+	<Company>Roxxel</Company>
+	<Product>ObsidianAnnouncer</Product>
   </PropertyGroup>
-
+	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>C:\Users\warpe\Documents\ObsidianDev\Server\Obsidian\bin\Debug\netcoreapp3.1\Server-0\plugins</OutputPath>
   </PropertyGroup>
