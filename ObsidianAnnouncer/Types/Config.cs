@@ -31,7 +31,7 @@ namespace ObsidianAnnouncer.Types
 
             Config config = JsonConvert.DeserializeObject<Config>(json);
 
-            if (config.Interval < 0) config.Interval = 45;
+            if (config.Interval <= 0) config.Interval = 45;
             if (config.MinPlayers < 0) config.MinPlayers = 0;
             return config;
         }

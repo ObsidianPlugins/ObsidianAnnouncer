@@ -19,7 +19,7 @@ namespace ObsidianAnnouncer.Commands
                     try
                     {
                         Globals.Config = await ConfigManager.LoadConfig();
-                        await ctx.Player.SendMessageAsync($"§Config reloaded successfully");
+                        await ctx.Player.SendMessageAsync($"§aConfig reloaded successfully");
                         await Broadcaster.StartBroadcasting();
                     }
                     catch (Exception e)
