@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -22,15 +23,25 @@ namespace ObsidianAnnouncer.Types
         public static async Task<Config> LoadConfig()
         {
             var path = Path.Combine(Globals.GetWorkingDirectory, "config.json");
-            if (!Globals.FileReader.FileExists(path))
+
+          
+
+            Config config;
+            try
             {
-                Globals.FileWriter.CreateFile(path);
-                Globals.FileWriter.WriteAllText(path, JsonConvert.SerializeObject(new Config(), Formatting.Indented));
+                if (!Globals.FileReader.FileExists(path))
+                {
+                    Globals.FileWriter.CreateFile(path);
+                    Globals.FileWriter.WriteAllText(path, JsonConvert.SerializeObject(new Config(), Formatting.Indented));
+                }
+                var json = await Globals.FileReader.ReadAllTextAsync(path);
+                config = JsonConvert.DeserializeObject<Config>(json);
             }
-            var json = await Globals.FileReader.ReadAllTextAsync(path);
-
-            Config config = JsonConvert.DeserializeObject<Config>(json);
-
+            catch (Exception e)
+            {
+                config = new Config();
+                throw e;
+            }
             if (config.Interval <= 0) config.Interval = 45;
             if (config.MinPlayers < 0) config.MinPlayers = 0;
             return config;

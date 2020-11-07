@@ -28,10 +28,11 @@ namespace ObsidianAnnouncer
             Globals.FileWriter = FileWriter;
             Globals.FileReader = FileReader;
             Globals.Server = server;
+            Broadcaster.Initialize();
             try
             {
                 Globals.Config = await ConfigManager.LoadConfig();
-                Task.Run(() => Broadcaster.StartBroadcasting());
+                await Broadcaster.StartBroadcasting();
             }
             catch (Exception e)
             {
