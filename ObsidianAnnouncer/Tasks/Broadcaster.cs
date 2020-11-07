@@ -1,5 +1,6 @@
 ﻿using Obsidian.API;
 using ObsidianAnnouncer.Extensions;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ObsidianAnnouncer.Tasks
@@ -14,16 +15,19 @@ namespace ObsidianAnnouncer.Tasks
 
             while (isBroadcasting)
             {
-                foreach (var msg in Globals.Config.Messages)
+                if (Globals.Config.Messages.Count > 0 && Globals.Server.Players.Count() >= Globals.Config.MinPlayers)
                 {
-                    var finalMsg = IChatMessage.CreateNew();
-                    finalMsg.Text = string.Empty;
+                    foreach (var msg in Globals.Config.Messages)
+                    {
+                        var finalMsg = IChatMessage.CreateNew();
+                        finalMsg.Text = string.Empty;
 
-                    msg.ForEach(x => finalMsg.AddExtra(chatMessage: x?.ConvertToIChatMessage()));
+                        msg.ForEach(x => finalMsg.AddExtra(chatMessage: x?.ConvertToIChatMessage()));
 
-                    foreach (var player in Globals.Server.Players)
-                        await player.SendMessageAsync(finalMsg);
-                    await Task.Delay(Globals.Config.Interval * 1000);
+                        foreach (var player in Globals.Server.Players)
+                            await player.SendMessageAsync(finalMsg);
+                        await Task.Delay(Globals.Config.Interval * 1000);
+                    }
                 }
             }
         }
