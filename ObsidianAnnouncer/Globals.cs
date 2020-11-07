@@ -1,19 +1,29 @@
 ﻿using Obsidian.API;
 using Obsidian.API.Plugins.Services;
-using System;
+using ObsidianAnnouncer.Types;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace ObsidianAnnouncer
 {
     public static class Globals
     {
+        public static IServer Server { get; set; }
         public static ILogger Logger { get; set; }
         public static IFileReader FileReader { get; set; }
         public static IFileWriter FileWriter { get; set; }
+        public static Config Config { get; set; }
+        public static string GetWorkingDirectory
+        {
+            get
+            {
+                var dir = Path.Combine("", "ObsidianAnnouncer");
+                if (!FileWriter.DirectoryExists(dir)) FileWriter.CreateDirectory(dir);
+                return dir;
+            }
 
+        }
 
-       
         //Key = color name, Value = color code
         public readonly static Dictionary<string, string> Colors = new Dictionary<string, string>()
         {

@@ -1,34 +1,51 @@
-﻿using Newtonsoft.Json;
-using Obsidian.API;
+﻿using Obsidian.API;
 using Obsidian.CommandFramework.Attributes;
 using Obsidian.CommandFramework.Entities;
+using ObsidianAnnouncer.Tasks;
 using ObsidianAnnouncer.Types;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
-using ObsidianAnnouncer.Extensions;
 
 namespace ObsidianAnnouncer.Commands
 {
     public class MainModule : BaseCommandClass
     {
-        //For testing purposes, will be deleted soon
-        [Command("test")]
-        public async Task TestCmd(ObsidianContext ctx)
+        [Command("oa")]
+        public async Task TestCmd(ObsidianContext ctx, string arg)
         {
-            var json = "[[{\"text\":\" 12321gdsagdashgdahdghhds\",\"clickEvent\":{\"action\":\"open_url\", \"value\":\"https:\\/\\/www.youtube.com\\/watch?v=dQw4w9WgXcQ\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"100% NOT A RICKROLL\"}}]]";
-            var msgs = JsonConvert.DeserializeObject<List<List<Message>>>(json);
-            foreach (var msg in msgs)
+            switch (arg)
             {
-                var finalMsg = IChatMessage.CreateNew();
-                finalMsg.Text = "";
-                var tempMsg = IChatMessage.CreateNew();
+                case "reload":
+                    try
+                    {
+                        Globals.Config = await ConfigManager.LoadConfig();
+                        await ctx.Player.SendMessageAsync($"§Config reloaded successfully");
+                        await Broadcaster.StartBroadcasting();
+                    }
+                    catch (Exception e)
+                    {
+                        await ctx.Player.SendMessageAsync($"§cAn error occurred when loading a config. Broadcasting stopped\n{e.Message}");
+                        Broadcaster.StopBroadcasting();
+                    }
+                    break;
 
-                msg.ForEach(x => finalMsg.AddExtra(chatMessage: x.ConvertToIChatMessage()));
-                await ctx.Player.SendMessageAsync(finalMsg);
-                
+                default:
+                case "about":
+
+                    var msg = IChatMessage.CreateNew();
+                    msg.Text = "§aObsidian Announcer §f- §dInterval auto announcement for JSON messages";
+                    var clickComponent = ITextComponent.CreateNew();
+                    clickComponent.Action = ETextAction.OpenUrl;
+                    clickComponent.Value = "https://github.com/roxxel/ObsidianAnnouncer";
+
+                    var hoverComponent = ITextComponent.CreateNew();
+                    hoverComponent.Action = ETextAction.ShowText;
+                    hoverComponent.Value = "§aPlugin github repo";
+
+                    msg.HoverEvent = hoverComponent;
+                    msg.ClickEvent = clickComponent;
+                    await ctx.Player.SendMessageAsync(msg);
+                    break;
             }
         }
     }

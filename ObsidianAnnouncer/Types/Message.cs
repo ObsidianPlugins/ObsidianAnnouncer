@@ -1,15 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Obsidian.API;
-using ObsidianAnnouncer.Extensions;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ObsidianAnnouncer.Types
 {
     //Stolen from Obsidian repo
     public class Message : IChatMessage
-    { 
+    {
         [JsonProperty("color", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Color { get; set; }
         [JsonProperty("text", DefaultValueHandling = DefaultValueHandling.Ignore)]
@@ -45,8 +42,8 @@ namespace ObsidianAnnouncer.Types
         [JsonIgnore]
         public IEnumerable<IChatMessage> Extras => GetExtras();
 
-        ITextComponent IChatMessage.ClickEvent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        ITextComponent IChatMessage.HoverEvent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        ITextComponent IChatMessage.ClickEvent { get => ClickEvent; set => ClickEvent = (TextComponent)value; }
+        ITextComponent IChatMessage.HoverEvent { get => HoverEvent; set => HoverEvent = (TextComponent)value; }
 
 
         public IEnumerable<IChatMessage> GetExtras()

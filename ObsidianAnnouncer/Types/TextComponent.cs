@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Obsidian.API;
 using ObsidianAnnouncer.Extensions.Converter;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ObsidianAnnouncer.Types
 {

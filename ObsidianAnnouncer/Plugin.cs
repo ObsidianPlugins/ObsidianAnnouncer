@@ -2,6 +2,9 @@
 using Obsidian.API.Plugins;
 using Obsidian.API.Plugins.Services;
 using ObsidianAnnouncer.Commands;
+using ObsidianAnnouncer.Tasks;
+using ObsidianAnnouncer.Types;
+using System;
 using System.Threading.Tasks;
 
 namespace ObsidianAnnouncer
@@ -24,8 +27,16 @@ namespace ObsidianAnnouncer
             Globals.Logger = Logger;
             Globals.FileWriter = FileWriter;
             Globals.FileReader = FileReader;
-
-
+            Globals.Server = server;
+            try
+            {
+                Globals.Config = await ConfigManager.LoadConfig();
+                await Broadcaster.StartBroadcasting();
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e.Message);
+            }
             Logger.Log($"Loaded {Info.Name}");
             await Task.CompletedTask;
         }

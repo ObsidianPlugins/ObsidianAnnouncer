@@ -1,9 +1,5 @@
 ﻿using Obsidian.API;
 using ObsidianAnnouncer.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ObsidianAnnouncer.Extensions
 {
@@ -29,6 +25,6 @@ namespace ObsidianAnnouncer.Extensions
             return tmp;
 
         }
-        
+
     }
 }
