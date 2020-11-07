@@ -24,7 +24,7 @@ namespace ObsidianAnnouncer.Types
         {
             var path = Path.Combine(Globals.GetWorkingDirectory, "config.json");
 
-          
+
 
             Config config;
             try

@@ -21,7 +21,7 @@ namespace ObsidianAnnouncer.Tasks
             Globals.Logger.Log("Broadcasting started");
             while (!ct.IsCancellationRequested)
             {
-               
+
                 if (Globals.Config.Messages.Count > 0 && Globals.Server.Players.Count() >= Globals.Config.MinPlayers)
                 {
                     foreach (var msg in Globals.Config.Messages)
@@ -59,9 +59,9 @@ namespace ObsidianAnnouncer.Tasks
                 {
                     isBroadcasting = false;
                 }
-                
+
             }
-            
+
         }
         public static void StopBroadcasting()
         {
