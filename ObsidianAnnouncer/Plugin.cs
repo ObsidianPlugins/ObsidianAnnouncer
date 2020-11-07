@@ -31,7 +31,7 @@ namespace ObsidianAnnouncer
             try
             {
                 Globals.Config = await ConfigManager.LoadConfig();
-                await Broadcaster.StartBroadcasting();
+                Task.Run(() => Broadcaster.StartBroadcasting());
             }
             catch (Exception e)
             {
