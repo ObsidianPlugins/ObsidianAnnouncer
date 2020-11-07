@@ -9,8 +9,9 @@ namespace ObsidianAnnouncer.Types
     {
         [JsonProperty("interval", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int Interval { get; set; } = 45;
+
         [JsonProperty("min_players", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public int MinPlayers { get; set; } = 0;
+        public int MinPlayers { get; set; } = 1;
 
         [JsonProperty("messages", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public List<List<Message>> Messages = new List<List<Message>>();
